@@ -12,10 +12,25 @@ namespace ConsoleUI
         {
             CarManager carManager = new CarManager(new EfCarDal());
 
+            AddNewCar(carManager);
+            GetCarsDetail(carManager);
             //GetAllCars(carManager);
 
-            GetCarsDetail(carManager);
 
+        }
+
+        private static void AddNewCar(CarManager carManager)
+        {
+            Car newCar = new Car
+            {
+                CarName = "x90C",
+                BrandId = 2,
+                ColorId = 3,
+                DailyPrice = 2000,
+                ModelYear = 2022,
+                Description = "Volvo x90C Mavi araba"
+            };
+            carManager.Add(newCar);
         }
 
         private static void GetCarsDetail(CarManager carManager)
