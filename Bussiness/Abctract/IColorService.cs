@@ -10,5 +10,9 @@ namespace Bussiness.Abctract
     public interface IColorService
     {
         List<Color> GetAll();
+
+        void AddColor(Color color);
+        void DeteleColor(Color color);
+        void UpdateColor(Color color);
     }
 }

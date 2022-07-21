@@ -7,7 +7,12 @@ using System.Threading.Tasks;
 
 namespace Bussiness.Abctract
 {
-    public class IBrandService
+    public interface IBrandService
     {
+        List<Brand> GetAll();
+
+        void AddBrand(Brand brand);
+        void UpdateBrand(Brand brand);
+        void DeleteBrand(Brand brand);
     }
 }
