@@ -1,4 +1,9 @@
 ﻿using Bussiness.Abctract;
+using Bussiness.Constants;
+using Bussiness.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -20,56 +25,51 @@ namespace Bussiness.Concrete
             _CarDal = carDal;
         }
 
-        public void Add(Car car)
-        {
+        [ValidationAspect(typeof(CarValidator))]
+        public IResult Add(Car car)
+        {            
             _CarDal.Add(car);
-            Console.WriteLine("Araç başarıyla eklendi!");
-            //if (car.DailyPrice < 0 && car.Description.Length < 2)
-            //{
-            //    Console.WriteLine("HATA! Lütfen kurallara uygun bir şekilde araç ekleme işlemi yapınız. ");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Araç başarıyla eklendi!");
-            //    _CarDal.Add(car);
-            //    Console.WriteLine("Araç başarıyla eklendi!");
-            //}
+            return new SuccessResult(Messages.ProductAdded);
+            
         }
-
-        public void Delete(Car car)
+        [ValidationAspect(typeof(CarValidator))]
+        public IResult Delete(Car car)
         {
             _CarDal.Delete(car);
-            Console.WriteLine("Araç başarıyla silindi.");
+            return new SuccessResult(Messages.Successful);
+            
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
             _CarDal.Update(car);
+            return new SuccessResult(Messages.Successful);
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-            return _CarDal.GetAll();
+            return new SuccessDataResult<List<Car>>(_CarDal.GetAll(), Messages.ProductListed);
+
         }
 
-        public Car GetById(int id)
+        public IDataResult<Car> GetById(int id)
         {
-            return _CarDal.Get(c => c.CarId == id);
+            return new SuccessDataResult<Car>(_CarDal.Get(c => c.CarId == id));
         }
 
-        public List<Car> GetCarsByBrandId(int id)
+        public IDataResult<List<Car>> GetCarsByBrandId(int id)
         {
-            return _CarDal.GetAll(p=>p.BrandId == id);
+            return new SuccessDataResult<List<Car>>(_CarDal.GetAll(p=>p.BrandId == id));
         }
 
-        public List<Car> GetCarsByColorId(int id)
+        public IDataResult<List<Car>> GetCarsByColorId(int id)
         {
-            return _CarDal.GetAll(p=>id == p.ColorId);
+            return new SuccessDataResult<List<Car>>(_CarDal.GetAll(p=>id == p.ColorId));
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return _CarDal.GetCarDetails();
+            return new SuccessDataResult<List<CarDetailDto>>(_CarDal.GetCarDetails());
         
         }
     }

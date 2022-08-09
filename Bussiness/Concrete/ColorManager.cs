@@ -1,4 +1,7 @@
 ﻿using Bussiness.Abctract;
+using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrete;
+using Bussiness.Constants;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -17,27 +20,37 @@ namespace Bussiness.Concrete
             _ColorDal = colorDal;
         }
 
-        public List<Color> GetAll()
+        public IDataResult<List<Color>> GetAll()
         {
-            return _ColorDal.GetAll();
+            return new SuccessDataResult<List<Color>>(_ColorDal.GetAll());
         }
 
-        public void AddColor(Color color)
+        public IResult AddColor(Color color)
         {
             _ColorDal.Add(color);
-            Console.WriteLine("Renk başarıyla eklendi!");
+            return new SuccessResult(Messages.ProductAdded);
         }
 
-        public void DeteleColor(Color color)
+        public IResult DeleteColor(Color color)
         {
             _ColorDal.Delete(color);
-            Console.WriteLine("Renk başarıyla silindi!");
+            return new SuccessResult(Messages.Successful);
         }
 
-        public void UpdateColor(Color color)
+        public IResult UpdateColor(Color color)
         {
             _ColorDal.Update(color);
-            Console.WriteLine("Renk başarıyla güncellendi!");
+            return new SuccessResult(Messages.Successful);
+        }
+
+        public IDataResult<List<Color>> GetAllByColorId(int id)
+        {
+            return new SuccessDataResult<List<Color>>(_ColorDal.GetAll(p => id == p.ColorId));
+        }
+
+        public IDataResult<Color> GetById(int id)
+        {
+            return new SuccessDataResult<Color>(_ColorDal.Get(c => c.ColorId == id));
         }
     }
 }
