@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Kodlama.io\Day3\MyFinalProject\Core\Core.csproj" />
-    <ProjectReference Include="..\..\Kodlama.io\MyFinalProject\Core\Core.csproj" />
   </ItemGroup>
 
 </Project>
