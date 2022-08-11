@@ -47,7 +47,7 @@ namespace Bussiness.Concrete
 
         public IDataResult<Brand> GetById(int id)
         {
-            return new SuccessDataResult<Brand>(_BrandDal.Get(c => c.BrandId == id));
+            return new SuccessDataResult<Brand>(_BrandDal.Get(c => c.Id == id));
         }
     }
 }

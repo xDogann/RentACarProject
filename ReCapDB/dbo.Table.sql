@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Table]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [ImageId] INT NOT NULL, 
+    [CarId] INT NOT NULL, 
+    [ImagePath] NVARCHAR(MAX) NOT NULL, 
+    [Date] DATETIME NOT NULL
+)

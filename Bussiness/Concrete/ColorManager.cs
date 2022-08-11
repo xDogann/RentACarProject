@@ -45,12 +45,12 @@ namespace Bussiness.Concrete
 
         public IDataResult<List<Color>> GetAllByColorId(int id)
         {
-            return new SuccessDataResult<List<Color>>(_ColorDal.GetAll(p => id == p.ColorId));
+            return new SuccessDataResult<List<Color>>(_ColorDal.GetAll(p => id == p.Id));
         }
 
         public IDataResult<Color> GetById(int id)
         {
-            return new SuccessDataResult<Color>(_ColorDal.Get(c => c.ColorId == id));
+            return new SuccessDataResult<Color>(_ColorDal.Get(c => c.Id == id));
         }
     }
 }
