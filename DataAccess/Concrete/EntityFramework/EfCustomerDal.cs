@@ -1,4 +1,4 @@
-﻿using Core.DataAccess.EntityFramewok;
+﻿using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Concrete.EntityFramework
+namespace DataAccess.Concrete.EntityFrameWork
 {
-    public class EfCustomerDal:EfEntityRepositoryBase<Customer, ReCapContext>,ICustomerDal
+    public class EfCustomerDal : EfEntityRepositoryBase<Customer, ReCapContext>, ICustomerDal
     {
     }
 }

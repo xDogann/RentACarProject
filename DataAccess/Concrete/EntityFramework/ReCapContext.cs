@@ -6,24 +6,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Concrete.EntityFramework
+namespace DataAccess.Concrete.EntityFrameWork
 {
-    public class ReCapContext : DbContext
+    //context Db tablolarıyla proje classlarını bağlama
+    public class ReCapContext:DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)//bu metod senin hangi veritabanıyla çalıştığını söyler
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb; Database=ReCapProject; Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=ReCapProject;Trusted_Connection=true");
         }
 
-        
-        
-
         public DbSet<Car> Cars { get; set; }
+
         public DbSet<Color> Colors { get; set; }
+
         public DbSet<Brand> Brands { get; set; }
-        public DbSet<Customer> Customers { get; set; }
+
         public DbSet<User> Users { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<Rental> Rentals { get; set; }
+
         public DbSet<CarImage> CarImages { get; set; }
     }
 }
+//aeykcan.1
