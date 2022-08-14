@@ -56,9 +56,9 @@ namespace WebAPI.Controllers
             }
 
             [HttpGet("getall")]
-            public IActionResult GetAll()
+            public IActionResult GetAll(carId)
             {
-                var result = _carImageService.GetAll();
+                var result = _carImageService.GetAll(carId);
                 if (result.Success)
                 {
                     return Ok(result);

@@ -54,7 +54,7 @@ namespace Business.Concrete
 
         // --------------------------
 
-        public IDataResult<List<CarImage>> GetAll()
+        public IDataResult<List<CarImage>> GetAll(int carId)
         {
             var result = BusinessRules.Run(CheckIfCarImageExist(carId));
             if (result != null)
@@ -76,7 +76,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(c => c.Id == carId));
         }
 
-        private IResult CheckIfCarImageExist(int carId)
+        public IResult CheckIfCarImageExist(int carId)
         {
             var result = _carImageDal.GetAll(c => c.Id == carId).Count();
             if (result > 0)

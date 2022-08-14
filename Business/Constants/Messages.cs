@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,6 +10,10 @@ namespace Business.Constants
 {
     public static class Messages
     {
+        public static string AuthorizationDenied = "Yetkimiz yok.";
+        public static string UserNotFound = "Kullanıcı bulunamadı.";
+
+        public static string CarImageAdded = "Araba resmi eklendi.";
         public static string CarAdded = "Araba eklendi.";
         public static string CarNameInvalid = "Araba ismi geçersiz.";
         public static string CarsListed = "Arabalar listelendi.";
@@ -53,6 +59,5 @@ namespace Business.Constants
         public static string CustomersDetails = "Müşteriler string formatında detaylı bir şekilde listelendi.";
         public static string CustomersNameInvalid = "Müşteri ismi geçersiz.";
 
-        public static string CarImageAdded { get; internal set; }
     }
 }

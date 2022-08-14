@@ -3,9 +3,9 @@ using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
+using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
-using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
@@ -27,11 +27,8 @@ namespace Business.Concrete
         [ValidationAspect(typeof(UserManager))]
         public IResult Add(User user)
         {
-            
             _userDal.Add(user);
                 return new SuccessResult(Messages.UsersAdded);
-
-         
         }
 
         public IResult Delete(User user)
@@ -40,7 +37,6 @@ namespace Business.Concrete
             return new SuccessResult(Messages.UsersDeleted);
         }
 
-      
         public IDataResult<List<User>> GetAll()
         {
             return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.UsersListed);
@@ -51,7 +47,15 @@ namespace Business.Concrete
             return new SuccessDataResult<User>(_userDal.Get(p => p.Id == id));
         }
 
-        
+        public User GetByMail(string email)
+        {
+            return _userDal.Get(u=> u.Email == email);
+        }
+
+        public List<OperationClaim> GetClaims(User user)
+        {
+            return _userDal.GetClaims(user);
+        }
 
         public IResult Update(User user)
         {
